@@ -1,0 +1,77 @@
+<style>
+  .logo-container {
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+  }
+
+  .star {
+    font-size: 24px;
+    color: gold;
+  }
+
+  .logo-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .blue-text {
+    color: #007bff;
+  }
+</style>
+
+<!--header-->
+<%- include('./partials/headers.ejs') %>
+
+<!-- Login Form -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="logo-container">
+        <i class="fas fa-star star"></i>
+        <span class="logo-text">Star<span class="blue-text">light</span></span>
+      </div>
+      <% if (error_msg && error_msg.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error_msg[0] %>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% } %>
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
