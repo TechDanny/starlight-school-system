@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="./javascript/index.js"></script>
+    <style>
+      body {
+        padding-top: 56px;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        background-color: #6a1b9a;
+        color: white;
+        padding-top: 56px;
+      }
+
+      .sidebar-sticky {
+        padding-top: 20px;
+      }
+
+      .nav-link {
+        color: white !important;
+      }
+
+      .nav-link.active {
+        background-color: #512da8;
+      }
+
+      .card {
+        margin-bottom: 20px;
+      }
+
+      #add-students-content,
+      #add-teachers-content form {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+      }
+
+      #add-students-content,
+      #add-teachers-content label {
+        margin-top: 10px;
+      }
+
+      #add-students-content,
+      #add-teachers-content button {
+        margin-top: 20px;
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .star {
+        color: yellow;
+      }
+
+      .info-box {
+        background-color: rgb(13, 163, 13);
+        border-radius: 2%;
+        height: 140px;
+        border: #f8f9fa;
+        padding: 20px;
+        margin: 10px 0;
+        color: #fff;
+        text-align: center;
+      }
+
+      #manage-teachers-content {
+        margin-left: 250px;
+      }
+
+      .info-box1 {
+        background-color: rgba(177, 177, 7, 0.973);
+        border-radius: 2%;
+        height: 140px;
+        border: #f8f9fa;
+        padding: 20px;
+        margin: 10px 0;
+        color: #fff;
+        text-align: center;
+      }
+
+      .info-box2 {
+        background-color: rgb(34, 16, 194);
+        border-radius: 2%;
+        height: 140px;
+        border: #f8f9fa;
+        padding: 20px;
+        margin: 10px 0;
+        color: #fff;
+        text-align: center;
+      }
+
+      .info-box3 {
+        background-color: navy;
+        border-radius: 2%;
+        height: 140px;
+        border: #f8f9fa;
+        padding: 20px;
+        margin: 10px 0;
+        color: #fff;
+        text-align: center;
+      }
+
+      .info-box a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: font-weight 0.3s ease;
+      }
+
+      .info-box1 a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: font-weight 0.3s ease;
+      }
+
+      .info-box2 a {
+        color: #ffffff;
+        text-decoration: none;
+        margin-bottom: 0;
+        transition: font-weight 0.3s ease;
+      }
+
+      .info-box3 a {
+        color: #ffffff;
+        text-decoration: none;
+        margin-bottom: 0;
+        transition: font-weight 0.3s ease;
+      }
+
+      .info-link {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .info-box a:hover {
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .info-box1 a:hover {
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .info-box2 a:hover {
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .info-box3 a:hover {
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .logo-container {
+        display: flex;
+        align-items: center;
+        margin-top: -45px;
+      }
+
+      .star {
+        font-size: 24px;
+        color: gold;
+      }
+
+      .logo-text {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .blue-text {
+        color: #007bff;
+      }
+    </style>
+    <title>Admin Dashboard</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column" style="cursor: pointer">
+              <a class="navbar-brand" href="#">
+                <div class="logo-container">
+                  <i class="fas fa-star star"></i>
+                  <span class="logo-text"
+                    >Star<span class="blue-text">light</span></span
+                  >
+                </div>
+              </a>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  style="margin-top: 65px"
+                  onclick="changeNavItem(this, 'Dashboard')"
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  onclick="changeNavItem(this, 'Manage Students')"
+                >
+                  Manage Students
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  onclick="changeNavItem(this, 'Add Students')"
+                >
+                  Add Students
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  onclick="changeNavItem(this, 'Add Teachers')"
+                >
+                  Add Teachers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  onclick="changeNavItem(this, 'Manage Teachers')"
+                >
+                  Manage Teachers
+                </a>
+              </li>
+              <li class="nav-item" style="margin-top: 65px">
+                <a class="nav-link" href="/login"> Logout </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <% if (success_msg && success_msg.length > 0) { %>
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <%= success_msg[0] %>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <% } %>
+
+          <!-- Dashboard Content -->
+          <%- include('./partials/dash-content.ejs', { totalStudents:
+          totalStudents, totalTeachers: totalTeachers, totalMaleStudents:
+          totalMaleStudents, totalFemaleStudents: totalFemaleStudents}) %>
+
+          <!-- Manage Students Content -->
+          <%- include('./partials/manage-students.ejs', { students: students })
+          %>
+
+          <!-- Add Students Content -->
+          <%- include('./partials/add-students.ejs') %>
+
+          <!--Add Teachers content-->
+          <%- include('./partials/add-teachers.ejs') %>
+
+          <!--Manage Teachers content-->
+          <%- include('./partials/manage-teachers.ejs', { teachers: teachers })
+          %>
+        </main>
+      </div>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
