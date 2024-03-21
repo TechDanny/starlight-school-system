@@ -1,0 +1,83 @@
+<style>
+  .info-box {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .info-box1 {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .info-box2 {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .info-link a {
+    text-decoration: none;
+    color: white;
+    position: relative;
+  }
+
+  .info-link a span {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  .info-link a:hover {
+    font-size: 1.1em;
+  }
+</style>
+
+<div id="dashboard-content">
+  <h1 class="mt-4">Hello Teacher, <%= teacher.firstName %></h1>
+  <h2 id="dashboard-title">Dashboard</h2>
+  <div>
+    <p>Current Route: <span id="current-route">/dashboard</span></p>
+    <p>Current Date: <%= new Date().toLocaleDateString() %></p>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box">
+          <h5 class="card-title">Total number of students:</h5>
+          <p style="font-size: 24px"><%= students.length %></p>
+          <div class="info-link">
+            <a onclick="changeNavItem(this, 'My Students')"
+              >More Info<span>&rarr;</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box1">
+          <h5 class="card-title">Total Male Students:</h5>
+          <p style="font-size: 24px">
+            <%= students.filter(student => student.sex === 'male' &&
+            student.studentClass === teacher.teacherClass).length %>
+          </p>
+          <div class="info-link">
+            <a href="#">More Info<span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box2">
+          <h5 class="card-title">Total Female Students:</h5>
+          <p style="font-size: 24px">
+            <%= students.filter(student => student.sex === 'female' &&
+            student.studentClass === teacher.teacherClass).length %>
+          </p>
+          <div class="info-link">
+            <a href="#">More Info<span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
