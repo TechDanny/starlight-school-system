@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="student-ranking-content" style="display: none">
+      <div class="container mt-5">
+        <h2>Student Ranking</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Student ID</th>
+                <th>Math</th>
+                <th>Eng</th>
+                <th>Kisw</th>
+                <th>Sci</th>
+                <th>Comp</th>
+                <th>French</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% students.forEach((student, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= student.firstName %> <%= student.lastName %></td>
+                <% if(student.grades.length > 0) { %> <%
+                student.grades.forEach((grade) => { %>
+                <td><%= grade.mathGrade %></td>
+                <td><%= grade.englishGrade %></td>
+                <td><%= grade.kiswahiliGrade %></td>
+                <td><%= grade.scienceGrade %></td>
+                <td><%= grade.computerGrade %></td>
+                <td><%= grade.frenchGrade %></td>
+                <td><%= grade.totalGrade %></td>
+                <% }); %> <% } else { %>
+                <td colspan="8">No grades available</td>
+                <% } %>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
