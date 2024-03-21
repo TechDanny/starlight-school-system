@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      #sidebar {
+        background-color: #800080 !important;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        z-index: 1;
+      }
+      #sidebar ul.nav.flex-column {
+        padding-top: 20px;
+      }
+      #sidebar ul.nav.flex-column a {
+        color: #fff;
+      }
+      .nav-link.active {
+        background-color: #512da8;
+      }
+      .menu-bar {
+        background-color: #800080;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 10px;
+      }
+      .menu-bar .logo {
+        padding: 10px;
+      }
+      .menu-bar .menu-links {
+        padding: 10px;
+      }
+      .navbar-toggler-icon {
+        color: #fff;
+      }
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .star {
+        font-size: 24px;
+        color: gold;
+      }
+
+      .logo-text {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .blue-text {
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Menu bar for small screens -->
+    <div class="menu-bar d-md-none">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <a class="navbar-brand" href="#">
+              <div class="logo-container">
+                <i class="fas fa-star star"></i>
+                <span class="logo-text"
+                  >Star<span class="blue-text">light</span></span
+                >
+              </div>
+            </a>
+          </div>
+          <div class="col-4">
+            <div class="text-right menu-links">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#sidebar"
+                aria-controls="sidebar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <nav
+      id="sidebar"
+      class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar collapse"
+    >
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column" style="cursor: pointer">
+          <a class="navbar-brand" href="#">
+            <div class="logo-container">
+              <i class="fas fa-star star"></i>
+              <span class="logo-text"
+                >Star<span class="blue-text">light</span></span
+              >
+            </div>
+          </a>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              style="margin-top: 65px"
+              href="/teacher-dashboard"
+              onclick="changeNavItem(this, 'Dashboard')"
+            >
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="changeNavItem(this, 'My Students')">
+              My Students
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="changeNavItem(this, 'Grade')">
+              Grade
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              onclick="changeNavItem(this, 'Student Ranking')"
+            >
+              Student Ranking
+            </a>
+          </li>
+        </ul>
+        <ul class="nav flex-column mt-3">
+          <li class="nav-item">
+            <a class="nav-link" onclick="changeNavItem(this, 'Account')">
+              My Account
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login"> Logout </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <% if (success_msg && success_msg.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success_msg[0] %>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% } %> <% if (error_msg && error_msg.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error_msg[0] %>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% } %>
+      <div id="content">
+        <!-- Teacher Dashboard  section -->
+        <%- include('./partials/teacherDash-content.ejs', { teacher: teacher })
+        %>
+
+        <!--My students section-->
+        <%- include('./partials/myStudents.ejs', { students, teacher }) %>
+
+        <!--Grading section-->
+        <%- include('./partials/grade.ejs') %>
+
+        <!--Student ranking content-->
+        <%- include('./partials/student-ranking.ejs') %>
+
+        <!--Teacher Profile Section-->
+        <%- include('./partials/teacherProfile.ejs') %>
+      </div>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function changeNavItem(element, title) {
+        document.querySelectorAll(".nav-link").forEach((navItem) => {
+          navItem.classList.remove("active");
+        });
+
+        element.classList.add("active");
+
+        document.getElementById("dashboard-title").innerText = title;
+
+        document.getElementById("dashboard-content").style.display = "none";
+        document.getElementById("my-students-content").style.display = "none";
+        document.getElementById("grade-content").style.display = "none";
+
+        const profileContent = document.getElementById("profile-content");
+        const studentRanking = document.getElementById(
+          "student-ranking-content"
+        );
+        if (profileContent) {
+          profileContent.style.display = "none";
+        }
+
+        if (studentRanking) {
+          studentRanking.style.display = "none";
+        }
+
+        if (title === "Dashboard") {
+          document.getElementById("dashboard-content").style.display = "block";
+        } else if (title === "My Students") {
+          document.getElementById("my-students-content").style.display =
+            "block";
+        } else if (title === "Grade") {
+          document.getElementById("grade-content").style.display = "block";
+        } else if (title == "Account") {
+          if (profileContent) {
+            profileContent.style.display = "block";
+          }
+        } else if (title == "Student Ranking") {
+          if (studentRanking) {
+            studentRanking.style.display = "block";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
