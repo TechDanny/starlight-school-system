@@ -1,0 +1,57 @@
+<div id="dashboard-content">
+  <h2 id="dashboard-title">Dashboard</h2>
+  <div>
+    <p>Current Route: <span id="current-route">/dashboard</span></p>
+    <p>Current Date: <%= new Date().toLocaleDateString() %></p>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box">
+          <h5 class="card-title">Total number of students:</h5>
+          <p style="font-size: 24px"><%= totalStudents %></p>
+          <div class="info-link">
+            <a onclick="changeNavItem(this, 'Manage Students')"
+              >More Info<span>&rarr;</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box1">
+          <h5 class="card-title">Total Male Students:</h5>
+          <p style="font-size: 24px"><%= totalMaleStudents %></p>
+          <div class="info-link">
+            <a href="#">More Info<span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box2">
+          <h5 class="card-title">Total Female Students:</h5>
+          <p style="font-size: 24px"><%= totalFemaleStudents %></p>
+          <div class="info-link">
+            <a href="#">More Info<span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body info-box3">
+          <h5 class="card-title">Total Teachers:</h5>
+          <p style="font-size: 24px"><%= totalTeachers %></p>
+          <div class="info-link">
+            <a onclick="changeNavItem(this, 'Manage Teachers')"
+              >More Info<span>&rarr;</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
