@@ -1,0 +1,57 @@
+<div id="profile-content" class="profile-content" style="display: none">
+    <div class="profile-section mt-4">
+      <% if (teacher.passport) { %>
+      <img
+        src="/uploads/<%= teacher.passport %>"
+        alt="Profile Picture"
+        class="profile-picture rounded-circle"
+        style="max-width: 150px; max-height: 150px"
+      />
+      <% } else { %>
+      <p>No profile picture available</p>
+      <% } %>
+      <h4 class="mt-2"><%= teacher.firstName %> <%= teacher.lastName %></h4>
+      <p>Class Teacher: <%= teacher.teacherClass %></p>
+    </div>
+  
+    <!-- Change Password Section -->
+    <div class="change-password-section mt-4 content-section">
+      <h5>Change Password</h5>
+      <form action="/teacher-dashboard/account" method="post">
+        <div class="form-group">
+          <label for="currentPassword">Current Password:</label>
+          <input
+            type="password"
+            name="currentPassword"
+            id="currentPassword"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="newPassword">New Password:</label>
+          <input
+            type="password"
+            name="newPassword"
+            id="newPassword"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm New Password:</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            class="form-control"
+            required
+          />
+        </div>
+        <form method="post" action="/teacher-dashboard/account">
+          <button class="btn btn-primary" type="submit">Save Changes</button>
+        </form>
+      </form>
+    </div>
+  </div>
+  

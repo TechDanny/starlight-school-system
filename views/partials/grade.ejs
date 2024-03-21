@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade Management</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+      <div class="card" id="grade-content" style="display: none;">
+        <div class="card-body">
+          <h2>Grade Entry for your students</h2>
+          <form id="gradeForm">
+            <div class="form-group">
+              <label for="fullName">Full Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fullName"
+                placeholder="Enter student's full name"
+                onclick="showStudentList()"
+              />
+            </div>
+            <div id="studentList" style="display: none"></div>
+            <div class="form-group">
+              <label for="studentId">Student ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="studentId"
+                placeholder="Enter student Id"
+              />
+            </div>
+            <div class="form-group">
+              <label for="examType">Exam Type:</label>
+              <select class="form-control" id="examType">
+                <option value="opening">Opening Exam</option>
+                <option value="midterm">Mid-term Exam</option>
+                <option value="closing">Closing Exam</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mathGrade">Math Grade:</label>
+              <input
+                type="number"
+                class="form-control subject-grade"
+                id="mathGrade"
+                placeholder="Enter Math grade"
+              />
+            </div>
+            <div class="form-group">
+              <label for="englishGrade">English Grade:</label>
+              <input
+                type="number"
+                class="form-control subject-grade"
+                id="englishGrade"
+                placeholder="Enter English grade"
+              />
+            </div>
+            <div class="form-group">
+              <label for="kiswahiliGrade">Kiswahili Grade:</label>
+              <input
+                type="number"
+                class="form-control subject-grade"
+                id="kiswahiliGrade"
+                placeholder="Enter Kiswahili grade"
+              />
+            </div>
+            <div class="form-group">
+              <label for="scienceGrade">Science Grade:</label>
+              <input
+                type="number"
+                class="form-control subject-grade"
+                id="scienceGrade"
+                placeholder="Enter Science grade"
+              />
+            </div>
+            <div class="form-group">
+              <label for="computerGrade">Computer Grade:</label>
+              <input
+                type="number"
+                class="form-control subject-grade"
+                id="computerGrade"
+                placeholder="Enter Computer grade"
+              />
+            </div>
+            <div class="form-group">
+              <label for="frenchGrade">French Grade:</label>
+              <input
+                type="number"
+                class="form-control subject-grade"
+                id="frenchGrade"
+                onchange="calculateTotal()"
+                placeholder="Enter French grade"
+              />
+            </div>
+            <div class="form-group">
+              <label for="totalGrade">Total Grade:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="totalGrade"
+                readonly
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      function showStudentList() {
+        $.ajax({
+          url: "/teacher-dashboard/my-students",
+          type: "GET",
+          success: function (response) {
+            $("#studentList").empty();
+
+            response.forEach((student) => {
+              const fullName = `${student.firstName} ${student.lastName}`;
+              const listItem = `<div class="student-item" onclick="selectStudent('${fullName}', '${student.studentId}')">${fullName}</div>`;
+              $("#studentList").append(listItem);
+            });
+
+            $("#studentList").show();
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+          },
+        });
+      }
+
+      function selectStudent(fullName, studentId) {
+        $("#fullName").val(fullName);
+        $("#studentId").val(studentId);
+        $("#studentList").hide();
+      }
+
+      function calculateTotal() {
+        var totalGrade = 0;
+        $(".subject-grade").each(function () {
+          if ($(this).val() !== "") {
+            totalGrade += parseFloat($(this).val());
+          }
+        });
+        $("#totalGrade").val(totalGrade);
+      }
+
+      $(document).ready(function () {
+        $(".subject-grade").on("input", function () {
+          calculateTotal();
+        });
+
+        $("#gradeForm").submit(function (event) {
+          event.preventDefault();
+
+          var formData = {
+            fullName: $("#fullName").val(),
+            studentId: $("#studentId").val(),
+            examType: $("#examType").val(),
+            mathGrade: $("#mathGrade").val(),
+            englishGrade: $("#englishGrade").val(),
+            kiswahiliGrade: $("#kiswahiliGrade").val(),
+            scienceGrade: $("#scienceGrade").val(),
+            computerGrade: $("#computerGrade").val(),
+            frenchGrade: $("#frenchGrade").val(),
+            totalGrade: $("#totalGrade").val(),
+          };
+
+          $.ajax({
+            url: "/submit-grades",
+            type: "POST",
+            data: formData,
+            success: function (response) {
+              console.log(response);
+              $(".alert-success").text("Grades submitted successfully").show();
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+              $(".alert-danger").text("Error submitting grades").show();
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
