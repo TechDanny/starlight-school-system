@@ -1,0 +1,39 @@
+<style>
+  @media print {
+    #print-button {
+      display: none;
+    }
+  }
+</style>
+
+<div id="my-students-content" style="display: none">
+  <h2>My Students</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Full Name</th>
+          <th>Class</th>
+          <th>Admission Year</th>
+          <th>Parent's phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach(student => { %> <% if (student.studentClass ===
+        teacher.teacherClass) { %>
+        <tr>
+          <td><%= student.studentId %></td>
+          <td><%= `${student.firstName} ${student.lastName}` %></td>
+          <td><%= student.studentClass %></td>
+          <td><%= student.admissionYear %></td>
+          <td><%= student.parentPhone %></td>
+        </tr>
+        <% } %> <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <button id="print-button" onclick="window.print()">
+    <i class="fas fa-print"></i> Print Table
+  </button>
+</div>
