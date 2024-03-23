@@ -331,26 +331,6 @@ app.get("/dashboard", async (req, res) => {
   }
 });
 
-app.get("/learning", (req, res) => {
-  res.render("learning", { defaultSection: "learning", title: "learning" });
-});
-
-// Administrative route
-app.get("/administrative", (req, res) => {
-  res.render("administrative", {
-    defaultSection: "administrative",
-    title: "administrative",
-  });
-});
-
-// Communication route
-app.get("/communication", (req, res) => {
-  res.render("communication", {
-    defaultSection: "communication",
-    title: "communication",
-  });
-});
-
 // Add Students route
 app.get("/add-students", (req, res) => {
   res.render("dashboard", {
