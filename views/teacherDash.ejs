@@ -16,24 +16,35 @@
       body {
         background-color: #f8f9fa;
       }
-      #sidebar {
+
+      .sidebar {
         background-color: #800080 !important;
         height: 100vh;
         position: fixed;
         top: 0;
-        left: 0;
+        left: -250px;
         width: 250px;
         z-index: 1;
+        transition: left 0.3s ease;
       }
-      #sidebar ul.nav.flex-column {
+
+      .sidebar-sticky {
         padding-top: 20px;
       }
-      #sidebar ul.nav.flex-column a {
+
+      .sidebar a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .sidebar a:hover {
+        background-color: transparent;
         color: #fff;
       }
+
       .nav-link.active {
         background-color: #512da8;
       }
+
       .menu-bar {
         background-color: #800080;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -42,16 +53,8 @@
         z-index: 1000;
         padding: 10px;
       }
-      .menu-bar .logo {
-        padding: 10px;
-      }
-      .menu-bar .menu-links {
-        padding: 10px;
-      }
-      .navbar-toggler-icon {
-        color: #fff;
-      }
-      .logo-container {
+
+      .menu-bar .logo-container {
         display: flex;
         align-items: center;
       }
@@ -69,47 +72,86 @@
       .blue-text {
         color: #007bff;
       }
+
+      .menu-bar .toggle-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          left: -250px;
+        }
+
+        .menu-bar .toggle-btn {
+          display: block;
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+        .logo-text {
+          color: #fff;
+        }
+        .star {
+          font-size: 24px;
+          color: gold;
+        }
+
+        .logo-text {
+          font-size: 24px;
+          font-weight: bold;
+        }
+
+        .blue-text {
+          color: #007bff;
+        }
+      }
+      @media (min-width: 768px) {
+        .sidebar {
+          left: 0;
+          padding-right: 10px;
+          width: 250px;
+        }
+        .sidebar-sticky {
+          display: block;
+        }
+
+        .menu-bar .toggle-btn {
+          display: none;
+        }
+        .menu-bar {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
-    <!-- Menu bar for small screens -->
-    <div class="menu-bar d-md-none">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-8">
-            <a class="navbar-brand" href="#">
-              <div class="logo-container">
-                <i class="fas fa-star star"></i>
-                <span class="logo-text"
-                  >Star<span class="blue-text">light</span></span
-                >
-              </div>
-            </a>
-          </div>
-          <div class="col-4">
-            <div class="text-right menu-links">
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#sidebar"
-                aria-controls="sidebar"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            </div>
-          </div>
-        </div>
+    <nav class="menu-bar">
+      <div class="logo-container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-star star"></i>
+          <span class="logo-text"
+            >Star<span class="blue-text">light</span></span
+          >
+        </a>
       </div>
-    </div>
+      <button class="toggle-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
 
     <!-- Sidebar -->
-    <nav
-      id="sidebar"
-      class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar collapse"
-    >
+    <nav id="sidebar" class="sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column" style="cursor: pointer">
           <a class="navbar-brand" href="#">
@@ -124,36 +166,41 @@
             <a
               class="nav-link active"
               style="margin-top: 65px"
-              href="/teacher-dashboard"
+              href="#"
               onclick="changeNavItem(this, 'Dashboard')"
+              >Dashboard</a
             >
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" onclick="changeNavItem(this, 'My Students')">
-              My Students
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" onclick="changeNavItem(this, 'Grade')">
-              Grade
-            </a>
           </li>
           <li class="nav-item">
             <a
               class="nav-link"
-              onclick="changeNavItem(this, 'Student Ranking')"
+              href="#"
+              onclick="changeNavItem(this, 'My Students')"
+              >My Students</a
             >
-              Student Ranking
-            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="changeNavItem(this, 'Grade')"
+              >Grade</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#"
+              onclick="changeNavItem(this, 'Student Ranking')"
+              >Student Ranking</a
+            >
           </li>
         </ul>
         <ul class="nav flex-column mt-3">
           <li class="nav-item">
-            <a class="nav-link" onclick="changeNavItem(this, 'Account')">
-              My Account
-            </a>
+            <a
+              class="nav-link"
+              href="#"
+              onclick="changeNavItem(this, 'Account')"
+              >My Account</a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login"> Logout </a>
@@ -161,7 +208,6 @@
         </ul>
       </div>
     </nav>
-
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <% if (success_msg && success_msg.length > 0) { %>
@@ -213,6 +259,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+      }
       function changeNavItem(element, title) {
         document.querySelectorAll(".nav-link").forEach((navItem) => {
           navItem.classList.remove("active");
