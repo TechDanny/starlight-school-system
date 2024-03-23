@@ -1,60 +1,74 @@
+<style>
+  @media (max-width: 991px) {
+    #add-teachers-content {
+      margin-top: 25px;
+    }
+    #add-teachers-content h2,
+    #add-teachers-content a {
+      margin-left: 0;
+    }
+  }
+</style>
+
 <div id="add-teachers-content" style="display: none;">
-    <h2 style="margin-left: 260px;">Add Teachers</h2>
-    <a style="margin-left: 260px;" href="#" onclick="changeNavItem(document.querySelector('.nav-link.active'), 'Dashboard')">Back to Dashboard</a>
-    <form method="POST" action="/add-teachers" enctype="multipart/form-data">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="teacherID">Teacher ID:</label>
-          <input type="text" id="teacherID" name="teacherID" class="form-control" required>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" required>
-        </div>
-      </div>
-  
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="lastName">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" required>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="sex">Sex:</label>
-          <select id="sex" name="sex" class="form-control" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="phoneNumber">Teacher's Phone No:</label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="teacherClass">Class:</label>
-          <select id="teacherClass" name="teacherClass" class="form-control" required>
-            <option value="Grade 1">Grade 1</option>
-            <option value="Grade 2">Grade 2</option>
-            <option value="Grade 3">Grade 3</option>
-            <option value="Grade 4">Grade 4</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="password">Create password:</label>
-          <input type="password" id="password" name="password" class="form-control" required>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="passport">Passport:</label>
-          <input type="file" class="form-control-file" id="passport" name="passport">
-        </div>
-      </div>
-  
-      <button type="submit" class="btn btn-primary">Add Teacher</button>
-    </form>
+  <div class="col-12">
+  <h2 style="margin-left: 260px;">Add Teachers</h2>
+  <a style="margin-left: 260px;" href="#" onclick="changeNavItem(document.querySelector('.nav-link.active'), 'Dashboard')">Back to Dashboard</a>
   </div>
-  </main>
-  </div>
-  </div>
+  <form method="POST" action="/add-teachers" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="teacherID">Teacher ID:</label>
+        <input type="text" id="teacherID" name="teacherID" class="form-control" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" class="form-control" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" class="form-control" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="phoneNumber">Teacher's Phone No:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="teacherClass">Class:</label>
+        <select id="teacherClass" name="teacherClass" class="form-control" required>
+          <option value="Grade 1">Grade 1</option>
+          <option value="Grade 2">Grade 2</option>
+          <option value="Grade 3">Grade 3</option>
+          <option value="Grade 4">Grade 4</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="password">Create password:</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="passport">Passport:</label>
+        <input type="file" class="form-control-file" id="passport" name="passport">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Teacher</button>
+  </form>
+</div>
+</main>
+</div>
+</div>
