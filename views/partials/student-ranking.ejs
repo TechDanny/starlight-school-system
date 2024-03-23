@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      @media print {
+        #print-button {
+          display: none;
+        }
+        .menu-bar {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="student-ranking-content" style="display: none">
@@ -47,6 +57,9 @@
           </table>
         </div>
       </div>
+      <button id="print-button" onclick="window.print()">
+        <i class="fas fa-print"></i> Print Table
+      </button>
     </div>
   </body>
 </html>
