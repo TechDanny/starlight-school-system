@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -196,11 +194,118 @@
       .blue-text {
         color: #007bff;
       }
+      @media (min-width: 992px) {
+        .navbar {
+          display: none;
+        }
+      }
+      @media (max-width: 991px) {
+        .navbar {
+          background-color: #6a1b9a;
+        }
+        .nav-item {
+          margin-top: -30px;
+        }
+        .sidebar {
+          z-index: 1040;
+          margin-left: -25px;
+          background-color: #6a1b9a;
+          padding-right: 60px;
+        }
+        .navbar-collapse {
+          margin-right: 10px;
+          margin-left: 10px;
+          margin-bottom: 30px;
+        }
+        .alert {
+          margin-top: 20px;
+        }
+      }
     </style>
     <title>Admin Dashboard</title>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid toggle-menu">
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">
+          <div class="logo">
+            <i class="fas fa-star star"></i>
+            <span class="logo-text"
+              >Star<span class="blue-text">light</span></span
+            >
+          </div>
+        </a>
+        <button
+          class="navbar-toggler d-md-none"
+          type="button"
+          data-toggle="collapse"
+          data-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+      <div class="collapse navbar-collapse" id="sidebarMenu">
+        <nav class="sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <a class="navbar-brand" href="#">
+                <div class="logo-container" style="margin-left: 25px">
+                  <i class="fas fa-star star"></i>
+                  <span class="logo-text"
+                    >Star<span class="blue-text">light</span></span
+                  >
+                </div>
+              </a>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  style="margin-top: 65px; margin-bottom: 30px"
+                  onclick="changeNavItem(this, 'Dashboard')"
+                  >Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-bottom: 30px; margin-top: 30px"
+                  onclick="changeNavItem(this, 'Manage Students')"
+                  >Manage Students</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-bottom: 30px; margin-top: 30px"
+                  onclick="changeNavItem(this, 'Add Students')"
+                  >Add Students</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-bottom: 30px; margin-top: 30px"
+                  onclick="changeNavItem(this, 'Add Teachers')"
+                  >Add Teachers</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="margin-bottom: 30px; margin-top: 30px"
+                  onclick="changeNavItem(this, 'Manage Teachers')"
+                  >Manage Teachers</a
+                >
+              </li>
+              <li class="nav-item" style="margin-top: 65px">
+                <a class="nav-link" href="/login">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
       <div class="row">
         <!-- Sidebar -->
         <nav class="col-md-2 d-none d-md-block sidebar">
@@ -304,20 +409,15 @@
 
     <%- include('./partials/footer.ejs') %>
 
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".navbar-toggler").on("click", function () {
+          $(".sidebar").toggleClass("active");
+        });
+      });
+    </script>
   </body>
 </html>
