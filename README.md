@@ -12,6 +12,7 @@
 3. [Features](#features)
 4. [Contributing](#contributing)
 5. [License](#license)
+6. [Special Thanks](#special-thanks)
 
 ## Installation
 
@@ -66,3 +67,13 @@ We welcome contributions! Please follow these guidelines:
 ## License
 
 This project is licensed under the [MIT License](LICENSE)
+
+## Special Thanks
+
+We would like to express our heartfelt gratitude to [ALX](https://www.alxafrica.com/) for providing us with the invaluable opportunity to participate in the Software Engineering Programme. This intensive and enriching 12-month journey has equipped us with the skills, knowledge, and mindset needed to tackle real-world software challenges.
+
+We are also deeply thankful to our peers and colleagues who generously shared their time, expertise, and support throughout this project and the entire duration of the programme. Your collaboration, encouragement, and guidance have been instrumental in our growth and success.
+
+This project marks the culmination of our journey with ALX, and we are proud to present our collective efforts as a testament to the transformative power of education and collaboration.
+
+Thank you, ALX, and thank you to all our peers, for being part of this remarkable journey with us.
