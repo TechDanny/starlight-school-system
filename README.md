@@ -74,6 +74,6 @@ We would like to express our heartfelt gratitude to [ALX](https://www.alxafrica.
 
 We are also deeply thankful to our peers and colleagues who generously shared their time, expertise, and support throughout this project and the entire duration of the programme. Your collaboration, encouragement, and guidance have been instrumental in our growth and success.
 
-This project marks the culmination of our journey with ALX, and we are proud to present our collective efforts as a testament to the transformative power of education and collaboration.
+This project marks the end of our journey with ALX, and we are proud to present our collective efforts as a testament to the transformative power of education and collaboration.
 
 Thank you, ALX, and thank you to all our peers, for being part of this remarkable journey with us.
