@@ -3,7 +3,8 @@
 
 <h3>Description</h3>
 <hr>
-<p>Welcome to Starlight School System<p><br>
+<p>Starlight is a comprehensive web application solution designed to streamline the administrative and academic processes of educational institutions. </p><br>
+<p>It provides a centralized platform for managing student information, staff records, academic schedules, and grades.</p><br>
 
 ## Table of Contents
 
