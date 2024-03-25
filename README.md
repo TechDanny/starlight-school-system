@@ -1,6 +1,7 @@
 <h2>Starlight School System</h2>
 <hr>
-<iframe width="560" height="315" src="./public/images/starlight.mp4" frameborder="0" allowfullscreen></iframe>
+
+[Click here to watch the video](./public/images/starlight.mp4)
 
 <h3>Description</h3>
 <hr>
