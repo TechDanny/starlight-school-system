@@ -1,8 +1,6 @@
 <h2>Starlight School System</h2>
 <hr>
 
-[Click here to watch the video](./public/images/starlight.mp4)
-
 <h3>Description</h3>
 <hr>
 <p>Welcome to Starlight School System<p><br>
