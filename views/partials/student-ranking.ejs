@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Student Ranking</title>
     <style>
       @media print {
         #print-button {
@@ -28,7 +28,7 @@
             <thead>
               <tr>
                 <th>Position</th>
-                <th>Student ID</th>
+                <th>Full Name</th>
                 <th>Math</th>
                 <th>Eng</th>
                 <th>Kisw</th>
@@ -39,24 +39,39 @@
               </tr>
             </thead>
             <tbody>
-              <% students.forEach((student, index) => { %>
+              <% if (populatedStudents && populatedStudents.length > 0) { %> <%
+              // Sort populatedStudents based on totalGrade
+              populatedStudents.sort((a, b) => b.grades.reduce((acc, curr) =>
+              acc + (curr.totalGrade || 0), 0) - a.grades.reduce((acc, curr) =>
+              acc + (curr.totalGrade || 0), 0)); // Render the sorted
+              populatedStudents populatedStudents.forEach((populatedStudent,
+              index) => { %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= student.firstName %> <%= student.lastName %></td>
-                <% if(student.grades.length > 0) { %> <%
-                student.grades.forEach((grade) => { %>
-                <td><%= grade.mathGrade %></td>
-                <td><%= grade.englishGrade %></td>
-                <td><%= grade.kiswahiliGrade %></td>
-                <td><%= grade.scienceGrade %></td>
-                <td><%= grade.computerGrade %></td>
-                <td><%= grade.frenchGrade %></td>
-                <td><%= grade.totalGrade %></td>
+                <td>
+                  <% if (populatedStudent && populatedStudent.firstName &&
+                  populatedStudent.lastName) { %> <%= populatedStudent.firstName
+                  %> <%= populatedStudent.lastName %> <% } else { %> N/A <% } %>
+                </td>
+                <% if (populatedStudent && populatedStudent.grades &&
+                populatedStudent.grades.length > 0) { %> <%
+                populatedStudent.grades.forEach((grade) => { %>
+                <td><%= grade.mathGrade || 'N/A' %></td>
+                <td><%= grade.englishGrade || 'N/A' %></td>
+                <td><%= grade.kiswahiliGrade || 'N/A' %></td>
+                <td><%= grade.scienceGrade || 'N/A' %></td>
+                <td><%= grade.computerGrade || 'N/A' %></td>
+                <td><%= grade.frenchGrade || 'N/A' %></td>
+                <td><%= grade.totalGrade || 'N/A' %></td>
                 <% }); %> <% } else { %>
                 <td colspan="8">No grades available</td>
                 <% } %>
               </tr>
-              <% }); %>
+              <% }); %> <% } else { %>
+              <tr>
+                <td colspan="9">No students available</td>
+              </tr>
+              <% } %>
             </tbody>
           </table>
         </div>
