@@ -54,8 +54,8 @@ const contactMessageSchema = new mongoose.Schema({
 //grade collection
 const gradeSchema = new mongoose.Schema({
   studentId: {
-    type: mongoose.Schema.Types.ObjectId, // Change type to ObjectId
-    ref: "Student", // Correct reference to the Student model
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Student",
   },
   examType: String,
   mathGrade: Number,
@@ -361,7 +361,7 @@ app.post("/add-students", upload.single("passport"), async (req, res) => {
       report,
     } = req.body;
 
-    // Checks if a student with the provided student ID already exists
+    // Checks if a student exists
     const existingStudent = await Student.findOne({ studentId });
     if (existingStudent) {
       req.flash("error_msg", "A student with that student ID already exists");
@@ -447,6 +447,7 @@ app.post("/add-teachers", upload.single("passport"), async (req, res) => {
       password,
     } = req.body;
 
+    // checks if the teacher exists
     const existingTeacher = await Teacher.findOne({ teacherID });
     if (existingTeacher) {
       req.flash("error_msg", "Teacher with that teacher ID already exists");
