@@ -40,12 +40,10 @@
             </thead>
             <tbody>
               <% if (populatedStudents && populatedStudents.length > 0) { %> <%
-              // Sort populatedStudents based on totalGrade
               populatedStudents.sort((a, b) => b.grades.reduce((acc, curr) =>
               acc + (curr.totalGrade || 0), 0) - a.grades.reduce((acc, curr) =>
-              acc + (curr.totalGrade || 0), 0)); // Render the sorted
-              populatedStudents populatedStudents.forEach((populatedStudent,
-              index) => { %>
+              acc + (curr.totalGrade || 0), 0));
+              populatedStudents.forEach((populatedStudent, index) => { %>
               <tr>
                 <td><%= index + 1 %></td>
                 <td>
