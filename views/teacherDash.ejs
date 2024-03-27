@@ -247,7 +247,8 @@
         <%- include('./partials/grade.ejs') %>
 
         <!--Student ranking content-->
-        <%- include('./partials/student-ranking.ejs') %>
+        <%- include('./partials/student-ranking.ejs', { students,
+        populatedStudents }) %>
 
         <!--Teacher Profile Section-->
         <%- include('./partials/teacherProfile.ejs') %>
