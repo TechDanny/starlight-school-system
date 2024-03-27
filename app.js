@@ -54,8 +54,8 @@ const contactMessageSchema = new mongoose.Schema({
 //grade collection
 const gradeSchema = new mongoose.Schema({
   studentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Student",
+    type: mongoose.Schema.Types.ObjectId, // Change type to ObjectId
+    ref: "Student", // Correct reference to the Student model
   },
   examType: String,
   mathGrade: Number,
@@ -202,7 +202,10 @@ app.get("/teacher-dashboard/my-students", async (req, res) => {
       const teacher = await Teacher.findById(req.session.teacherId);
       const students = await Student.find({
         studentClass: teacher.teacherClass,
-      }).populate("grades");
+      }).populate({
+        path: "grades",
+        model: "Grade",
+      });
 
       res.json(students);
     } else {
@@ -358,7 +361,7 @@ app.post("/add-students", upload.single("passport"), async (req, res) => {
       report,
     } = req.body;
 
-    // Checks if a student with that ID already exists
+    // Checks if a student with the provided student ID already exists
     const existingStudent = await Student.findOne({ studentId });
     if (existingStudent) {
       req.flash("error_msg", "A student with that student ID already exists");
@@ -444,7 +447,6 @@ app.post("/add-teachers", upload.single("passport"), async (req, res) => {
       password,
     } = req.body;
 
-    //Checks if teacher already exists
     const existingTeacher = await Teacher.findOne({ teacherID });
     if (existingTeacher) {
       req.flash("error_msg", "Teacher with that teacher ID already exists");
@@ -469,7 +471,7 @@ app.post("/add-teachers", upload.single("passport"), async (req, res) => {
     res.redirect("/dashboard");
   } catch (error) {
     console.error(error);
-    req.flash("error_msg", "Teacher with that Id already exists in the system");
+    req.flash("error_msg", "Error adding teacher");
     res.redirect("/dashboard");
   }
 });
