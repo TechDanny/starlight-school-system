@@ -183,7 +183,7 @@ app.get("/teacher-dashboard", async (req, res) => {
       res.render("teacherDash", {
         teacher,
         students,
-        populatedStudents: populatedStudents,
+        populatedStudents,
         title: "Teacher Dashboard",
       });
     } else {
