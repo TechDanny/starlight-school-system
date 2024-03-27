@@ -5,8 +5,6 @@ const dotenv = require("dotenv");
 const multer = require("multer");
 const mongoose = require("mongoose");
 
-const ObjectId = require("mongoose").Types.ObjectId;
-
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -56,7 +54,7 @@ const contactMessageSchema = new mongoose.Schema({
 //grade collection
 const gradeSchema = new mongoose.Schema({
   studentId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Student",
   },
   examType: String,
@@ -174,11 +172,18 @@ app.get("/teacher-dashboard", async (req, res) => {
       const teacher = await Teacher.findById(req.session.teacherId);
       const students = await Student.find({
         studentClass: teacher.teacherClass,
-      }).populate("grades");
+      });
+      const populatedStudents = await Promise.all(
+        students.map(async (student) => {
+          const grades = await Grade.find({ studentId: student._id });
+          return { ...student.toObject(), grades };
+        })
+      );
 
       res.render("teacherDash", {
         teacher,
         students,
+        populatedStudents: populatedStudents,
         title: "Teacher Dashboard",
       });
     } else {
@@ -223,10 +228,10 @@ app.post("/submit-grades", async (req, res) => {
       totalGrade,
     } = req.body;
 
-    const student = await Student.findOne({ studentId: studentId });
+    const student = await Student.findOne({ studentId: parseInt(studentId) });
 
     const newGrade = new Grade({
-      studentId: student.studentId,
+      studentId: student._id,
       examType,
       mathGrade,
       englishGrade,
@@ -239,11 +244,11 @@ app.post("/submit-grades", async (req, res) => {
 
     await newGrade.save();
     req.flash("success_msg", "Grades submitted successfully");
-    res.redirect("/submit-grades");
+    res.redirect("/teacher-dashboard");
   } catch (error) {
     console.error(error);
     req.flash("error_msg", "Error submitting grades");
-    res.redirect("/submit-grades");
+    res.redirect("/teacher-dashboard");
   }
 });
 
@@ -353,6 +358,13 @@ app.post("/add-students", upload.single("passport"), async (req, res) => {
       report,
     } = req.body;
 
+    // Checks if a student with that ID already exists
+    const existingStudent = await Student.findOne({ studentId });
+    if (existingStudent) {
+      req.flash("error_msg", "A student with that student ID already exists");
+      return res.redirect("/dashboard");
+    }
+
     // Checks if the file is present
     const passport = req.file ? req.file.filename : "";
 
@@ -432,6 +444,13 @@ app.post("/add-teachers", upload.single("passport"), async (req, res) => {
       password,
     } = req.body;
 
+    //Checks if teacher already exists
+    const existingTeacher = await Teacher.findOne({ teacherID });
+    if (existingTeacher) {
+      req.flash("error_msg", "Teacher with that teacher ID already exists");
+      return res.redirect("/dashboard");
+    }
+
     const passport = req.file ? req.file.filename : "";
     const newTeacher = new Teacher({
       teacherID,
@@ -450,7 +469,7 @@ app.post("/add-teachers", upload.single("passport"), async (req, res) => {
     res.redirect("/dashboard");
   } catch (error) {
     console.error(error);
-    req.flash("error_msg", "Error adding teacher");
+    req.flash("error_msg", "Teacher with that Id already exists in the system");
     res.redirect("/dashboard");
   }
 });
