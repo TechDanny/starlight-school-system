@@ -43,6 +43,8 @@ so before you continue with anything do the following:
 1. When you go to `http://localhost:3000` you will first see a landing page:
    <img src="./public/images/landing-page.png" alt="landing page">
 2. Login page for both Admin and Teachers:
+   <br>
+   Teachers will access teachers' dashboard by entering their `First Name` as Username and `password` provided by Admin
    <img src="./public/images/login.png" alt="login page">
 3. Admin Dashboard:
    <img src="./public/images/admin-dash.png" alt="admin dashboard">
