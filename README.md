@@ -35,7 +35,7 @@ so before you continue with anything do the following:
    `MONGODB_URI="Enter your mongodb URI here"`
 
 3. Now after successfully creating the `.env` file
-4. Run `node app` to start the application
+4. Run `nodemon app` to start the application
 5. Open your browser and go to `http://localhost:3000`
 
 ## Features
