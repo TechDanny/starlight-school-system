@@ -10,7 +10,7 @@
     "nodemon": "^3.1.4"
   },
   "devDependencies": {
-    "ejs-lint": "^0.1.1"
+    "ejs-lint": "^2.0.1"
   },
   "scripts": {
     "start": "node app.js"
